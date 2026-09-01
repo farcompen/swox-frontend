@@ -36,7 +36,7 @@ function App(){
   }),[products,query]);
 const getCategories = async()=>{
   try{
-    const result = await fetch(`${API_BASE}/api/products?category={catName}`);
+    const result = await fetch(`${API_BASE}/api/products?category=${catName}`);
     if(!result.ok) throw new Error(`HTTP ${result.status}`);
     const j = await result.json();
      setRaw(j); setProducts(Array.isArray(j.items)?j.items:[]);
