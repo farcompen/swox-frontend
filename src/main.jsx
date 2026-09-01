@@ -15,6 +15,7 @@ function App(){
   const [detail,setDetail]=useState(null);
   const [detailRaw,setDetailRaw]=useState(null);
   const [detailLoading,setDetailLoading]=useState(false);
+  const [catName,setCatName]=useState("ayakkabi")
 
   const loadProducts=async()=>{
     setLoading(true); setError('');
@@ -27,13 +28,21 @@ function App(){
     finally{ setLoading(false); }
   };
 
-  useEffect(()=>{loadProducts()},[]);
+  useEffect(()=>{getCategories()},[catName]);
 
   const filtered=useMemo(()=>products.filter(p=>{
     const s=(p.name||p.title||'').toLowerCase();
     return s.includes(query.toLowerCase());
   }),[products,query]);
-
+const getCategories = async()=>{
+  try{
+    const result = await fetch(`${API_BASE}/api/products?category={catName}`);
+    if(!result.ok) throw new Error(`HTTP ${result.status}`);
+    const j = await result.json();
+     setRaw(j); setProducts(Array.isArray(j.items)?j.items:[]);
+  }catch(e){setError(e.message ||'API HATASI')}
+  finally{setLoading(false);}
+}
   const openDetail=async(p)=>{
     setSelected(p); setDetail(null); setDetailRaw(null); setDetailLoading(true);
     try{
@@ -59,7 +68,9 @@ function App(){
       <div><Server size={22}/><span><b>API</b><small>{error?'Hata':'Bağlı'}</small></span></div>
       <div><PackageSearch size={22}/><span><b>{products.length}</b><small>Ürün</small></span></div>
       <div><Search size={22}/><span><b>{filtered.length}</b><small>Filtre sonucu</small></span></div>
-    </section>
+   <div>
+   <button onClick={}>ayakkabı</button>
+   </div>
 
     <div className="toolbar">
       <Search size={18}/>
