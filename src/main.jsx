@@ -71,6 +71,9 @@ const getCategories = async()=>{
     </section>
    <div>
    <button onClick={()=>setCatName("ayakkabi")}>ayakkabı</button>
+        <button onClick={()=>setCatName("bot")}>bot</button>
+        <button onClick={()=>setCatName("cizme")}>çizme</button>
+        <button onClick={()=>setCatName("sandalet")}>sandalet</button>
    </div>
 
     <div className="toolbar">
