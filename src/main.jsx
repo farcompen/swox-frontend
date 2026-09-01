@@ -69,7 +69,7 @@ const getCategories = async()=>{
       <div><PackageSearch size={22}/><span><b>{products.length}</b><small>Ürün</small></span></div>
       <div><Search size={22}/><span><b>{filtered.length}</b><small>Filtre sonucu</small></span></div>
    <div>
-   <button onClick={setCatName("ayakkabi")}>ayakkabı</button>
+   <button onClick={()=>setCatName("ayakkabi")}>ayakkabı</button>
    </div>
 
     <div className="toolbar">
