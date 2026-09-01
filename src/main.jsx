@@ -97,7 +97,7 @@ const getCategories = async()=>{
         </div>
         <div className="cardbody">
           <h3>{p.name || p.title || 'Ürün'}</h3>
-          <div className="price">{formatPrice(p.price) ?? '-'} ₺ }</div>
+          <div className="price">{formatPrice(p.price) ?? '-'} ₺ </div>
           <small>{p.url || p.productUrl}</small>
         </div>
       </article>)}
