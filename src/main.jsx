@@ -54,6 +54,12 @@ const getCategories = async()=>{
     }catch(e){ setDetail({error:e.message}); }
     finally{ setDetailLoading(false); }
   };
+  const formatPrice = (price) => {
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(Number(price || 0));
+};
 
   return <div className="app">
     <header>
@@ -113,7 +119,7 @@ const getCategories = async()=>{
                 {(detail?.image || detail?.imageUrl || selected.image || selected.imageUrl) && <img className="detailimg" src={detail?.image || detail?.imageUrl || selected.image || selected.imageUrl}/>} 
               </div>
               <div>
-                <p><b>Fiyat:</b> {detail?.price ?? selected.price ?? '-'} {detail?.currency || selected.currency || 'TRY'}</p>
+                <p><b>Fiyat:</b> {formatPrice(detail?.price) ?? formatPrice(selected.price) ?? '-'} {detail?.currency || selected.currency || 'TRY'}</p>
                 <p><b>Numaralar/Varyantlar:</b></p>
                 <div className="chips">{(detail?.sizes || detail?.variants || []).length ? (detail.sizes || detail.variants).map((s,i)=><span key={i}>{typeof s==='string'?s:(s.name||s.value||JSON.stringify(s))}</span>) : <em>Varyant bulunamadı</em>}</div>
                 {(selected.url||selected.productUrl) && <a className="ext" href={selected.url||selected.productUrl} target="_blank"><ExternalLink size={16}/> Mağazada aç</a>}
