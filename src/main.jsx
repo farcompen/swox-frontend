@@ -68,7 +68,7 @@ const getCategories = async()=>{
       <div><Server size={22}/><span><b>API</b><small>{error?'Hata':'Bağlı'}</small></span></div>
       <div><PackageSearch size={22}/><span><b>{products.length}</b><small>Ürün</small></span></div>
       <div><Search size={22}/><span><b>{filtered.length}</b><small>Filtre sonucu</small></span></div>
-    </section>section>
+    </section>
    <div>
    <button onClick={()=>setCatName("ayakkabi")}>ayakkabı</button>
    </div>
